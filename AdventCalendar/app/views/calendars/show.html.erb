@@ -1,0 +1,35 @@
+<p>
+  <b>Title:</b>
+  <%= @calendar.title %>
+</p>
+
+<p>
+  <b>Public:</b>
+  <% if @calendar.public? %>
+      Yes
+  <% else %>
+      No
+  <% end %>
+</p>
+
+<table border="5" cellpadding="50"
+
+       <% if !@calendar.img_url.nil? %>
+       background="<%= @calendar.img_url %>"
+       <% else %>
+       bgcolor="#AA1100"
+       <% end %>
+
+       title="<%= @calendar.title %>">
+
+  <%= render :partial => 'calendars/show_doors' %>
+
+</table>
+
+<br/>
+
+<% if user_has_access_to? @calendar %>
+    <%= link_to 'Edit', edit_calendar_path(@calendar) %> |
+<% end %>
+
+<%= link_to 'Back', calendars_path %>

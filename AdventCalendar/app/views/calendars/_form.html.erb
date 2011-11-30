@@ -1,0 +1,77 @@
+<%= form_for(@calendar) do |f| %>
+
+    <% if @calendar.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@calendar.errors.count, "error") %> prohibited this calendar from being saved:</h2>
+
+          <ul>
+            <% @calendar.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :title %>
+      <br/>
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= f.label :img_url %>
+      <br/>
+      <%= f.text_field :img_url %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Make public:' %>
+      <br/>
+      <%= f.check_box :public, {}, true, false %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Share with user:' %>
+      <br/>
+      <ul>
+        <% for user in @users do %>
+            <li>
+              <%= check_box_tag 'calendar[user_ids][]',
+                                user.id,
+                                @calendar.user_ids.include?(user.id),
+                                :id => "user_#{user.id}"
+              %>
+              <%= label_tag "user_#{user.id}", user.name %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+
+
+    <div class="field">
+      <table border="5" title="<%= @calendar.title %>">
+        <tr>
+          <% @calendar.doors.each_with_index do |door, index| %>
+              <td>
+                <%= fields_for "doors[#{index}]", door do |g| %>
+                    <p><%= "#{index + 1}.Desember" %></p>
+                    <p><%= g.text_area :content, :cols => 20, :rows => 5 %></p>
+
+                    <!-- Adding a hidden unlock-date -->
+                    <%= g.hidden_field :unlock_date, {:value => ("#{index + 1}-12-#{Time.now.year}")} %>
+                <% end %>
+              </td>
+              <% if (index + 1) % 4 == 0 %>
+                  </tr>
+                  <tr>
+              <% end %>
+          <% end %>
+          </tr>
+          </table>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+<% end %>

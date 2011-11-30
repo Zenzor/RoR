@@ -1,0 +1,15 @@
+<tr>
+  <td><%= user.email %></td>
+  <td><%= user.name %></td>
+  <td><%= user.surname %></td>
+  <td>
+    <% if user.admin %>
+        Admin
+    <% else %>
+        User
+    <% end %>
+  </td>
+  <td><%= link_to 'Show', user %></td>
+  <td><%= link_to 'Edit', edit_user_registration_path(user) %></td>
+  <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+</tr>

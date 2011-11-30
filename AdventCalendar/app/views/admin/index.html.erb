@@ -1,0 +1,14 @@
+<%= render :partial => 'admin/form' %>
+
+<h2>All calendars</h2>
+
+<table>
+
+  <tr>
+    <th>Title</th>
+    <th>Status</th>
+    <th>Owner</th>
+  </tr>
+
+  <%= render :partial => 'admin/calendar', :collection => @calendars %>
+</table>

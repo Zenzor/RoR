@@ -1,0 +1,70 @@
+<table>
+
+  <!-- Official  calendars, unless empty/missing-->
+  <tr>
+    <h2>Public Calendars</h2>
+
+    <% unless @calendars.empty? %>
+        <table>
+          <tr>
+            <th>Title</th>
+            <th>Owner</th>
+          </tr>
+
+          <%= render 'calendars/public_calendars' %>
+
+        </table>
+    <% else %>
+        <p>No calendars available</p>
+    <% end %>
+
+  </tr>
+  <br/><br/>
+
+  <!-- Calendars shared with user, unless empty/missing, or not signed in -->
+  <% if user_signed_in? %>
+      <tr>
+        <h2>Shared Calendars</h2>
+
+        <% unless @shared_calendars.empty? %>
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>Owner</th>
+              </tr>
+
+              <%= render 'calendars/shared_calendars' %>
+
+            </table>
+        <% else %>
+            <p>No calendars available</p>
+        <% end %>
+
+      </tr>
+      <br/><br/>
+
+      <!-- Users calendars, unless empty/missing, or not signed in-->
+      <tr>
+        <h2>Your Calendars</h2>
+
+        <% unless @user_calendars.empty? %>
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>Status</th>
+              </tr>
+
+              <%= render 'calendars/your_calendars' %>
+
+            </table>
+        <% else %>
+            <p>No calendars available</p>
+        <% end %>
+        <br/>
+
+        <%= link_to 'New Calendar', new_calendar_path %>
+      </tr>
+  <% end %>
+
+</table>
+

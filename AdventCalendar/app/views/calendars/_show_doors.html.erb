@@ -1,0 +1,15 @@
+<tr>
+  <% @calendar.doors.each_with_index do |door, index| %>
+      <td>
+        <% unless door.unlock_date.future? %>
+            <%= link_to "#{index + 1}", door %>
+        <% else %>
+            <b><%= index + 1 %></b>
+        <% end %>
+      </td>
+      <% if (index + 1) % 4 == 0 %>
+          </tr>
+          <tr>
+      <% end %>
+  <% end %>
+  </tr>

@@ -1,0 +1,11 @@
+<% @shared_calendars.each do |calendar| %>
+    <tr>
+      <td><p><%= link_to "#{calendar.title}", calendar %></td>
+      </p>
+      <td><%= calendar.user.name %></td>
+      <% if user_is_admin? %>
+          <td><%= link_to 'Edit', edit_calendar_path(calendar) %></td>
+          <td><%= link_to 'Destroy', calendar, confirm: 'Are you sure?', method: :delete %></td>
+      <% end %>
+    </tr>
+<% end %>

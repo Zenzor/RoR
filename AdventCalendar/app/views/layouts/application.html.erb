@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AdventCalendar</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<h1>AdventCalendar</h1>
+<h5>Make your own calendar and share it with friends and family!</h5>
+<table border="1">
+  <tr>
+    <td><%= link_to "Home", root_path %></td>
+    <% if user_signed_in? %>
+        <td>Signed in as <%= current_user.name %> <%= current_user.surname %>.</td>
+        <td><%= link_to "Edit my account", edit_user_registration_path, :request => :get %></td>
+        <td><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></td>
+        <% if current_user.admin? %>
+            <td><%= link_to "Admin-panel", admin_index_path %></td>
+        <% end %>
+    <% else %>
+        <td><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %></td>
+    <% end %>
+  </tr>
+</table>
+
+<p class="notice"><%= notice %></p>
+
+<p class="alert"><%= alert %></p>
+
+<br/>
+
+<%= yield %>
+
+</body>
+</html>

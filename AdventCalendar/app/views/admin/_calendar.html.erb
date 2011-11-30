@@ -1,0 +1,11 @@
+<tr>
+  <td><%= link_to "#{calendar.title}", calendar %></td>
+  <td>
+    <% if calendar.public? %>
+        <p>Public</p>
+    <% else %>
+        <p>Private</p>
+    <% end %>
+  </td>
+  <td><%= link_to "#{owner_of(calendar).name} #{owner_of(calendar).surname}", owner_of(calendar) %></td>
+</tr>

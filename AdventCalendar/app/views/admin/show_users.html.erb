@@ -1,0 +1,13 @@
+<table>
+  <tr>
+    <% unless @users.empty? %>
+        <%= render :partial => 'admin/user', :collection => @users %>
+    <% else %>
+        <p>Could not find any users by your search criteria.</p>
+    <% end %>
+  </tr>
+</table>
+
+<br/>
+
+<%= link_to "Back", admin_index_path %>

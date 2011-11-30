@@ -1,0 +1,17 @@
+<%= form_tag({:controller => "admin", :action => "show_users"}, :method => "get") do %>
+    <div class="field">
+      <%= label_tag(:n, "Name:") %>
+      <%= text_field_tag(:n) %>
+    </div>
+
+    <div class="field">
+      <%= label_tag(:sn, "Surname:") %>
+      <%= text_field_tag(:sn) %>
+    </div>
+
+    <h6>(Leave blank to get all users)</h6>
+
+    <div class="actions">
+      <%= submit_tag("Search") %>
+    </div>
+<% end %>

@@ -1,0 +1,12 @@
+<% @calendars.each do |calendar| %>
+    <tr>
+      <% if calendar.public? %>
+          <td><%= link_to "#{calendar.title}", calendar %></td>
+          <td><%= calendar.user.name %></td>
+          <% if user_is_admin? %>
+              <td><%= link_to 'Edit', edit_calendar_path(calendar) %></td>
+              <td><%= link_to 'Destroy', calendar, confirm: 'Are you sure?', method: :delete %></td>
+          <% end %>
+      <% end %>
+    </tr>
+<% end %>
